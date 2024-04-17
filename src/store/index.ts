@@ -8,13 +8,20 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import userReducer from './userSlice';
+import user from './userSlice';
+import game from './gameSlice';
 
 const middlewares: Middleware[] = [];
 
+if (__DEV__) {
+  const createDebugger = require('redux-flipper').default;
+  middlewares.push(createDebugger());
+}
+
 export const store = configureStore({
   reducer: {
-    [userReducer.name]: userReducer,
+    user,
+    game,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

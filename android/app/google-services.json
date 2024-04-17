@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "518939088416",
+    "firebase_url": "https://rps-game-eb0f2-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "rps-game-eb0f2",
+    "storage_bucket": "rps-game-eb0f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518939088416:android:8a8611f713640a5d6e8e45",
+        "android_client_info": {
+          "package_name": "com.reactnativerps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "518939088416-bjiiccpai1og87bsn01bn6j6had6dnrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHGWTGJBCq-mOBY_cbudnj8qrn0nq9ULY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "518939088416-bjiiccpai1og87bsn01bn6j6had6dnrs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

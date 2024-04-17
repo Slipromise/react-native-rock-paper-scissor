@@ -4,7 +4,7 @@ import LottieView from 'lottie-react-native';
 import {Animated, Easing} from 'react-native';
 type Props = {
   nickname: string;
-  card: 'Secret' | 'Rock' | 'Paper' | 'Scissors';
+  card: 'Secret' | 'Rock' | 'Paper' | 'Scissor';
 };
 
 const animation = require('../images/Animation - 1713198851570.json');
