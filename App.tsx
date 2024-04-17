@@ -7,11 +7,11 @@
 
 import React from 'react';
 import {Provider} from 'react-redux';
-import {persistor, store} from './src/store';
+import {store} from './src/store';
 import Pages from './src/pages';
-import {PersistGate} from 'redux-persist/integration/react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Text, View} from 'react-native';
+import {ThemeProvider} from '@rneui/themed';
+import theme from './src/styles/theme';
 
 function App(): React.JSX.Element {
   // return <Pages></Pages>;
@@ -19,9 +19,10 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        {/* <PersistGate loading={<Text>Loading</Text>} persistor={persistor}> */}
-        <Pages />
-        {/* </PersistGate> */}
+        <ThemeProvider theme={theme}>
+          <Pages />
+        </ThemeProvider>
+        {/* TODO: auth gate */}
       </Provider>
     </SafeAreaProvider>
   );

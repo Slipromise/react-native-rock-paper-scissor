@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useMemo} from 'react';
 import {ListItem} from '@rneui/themed';
 import LottieView from 'lottie-react-native';
-import {Animated, Easing} from 'react-native';
+// import {Animated, Easing} from 'react-native';
 type Props = {
   nickname: string;
   card: 'Secret' | 'Rock' | 'Paper' | 'Scissor';
@@ -9,21 +9,10 @@ type Props = {
 
 const animation = require('../images/Animation - 1713198851570.json');
 
-const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
+// const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 
-const PlayerListItem = ({nickname}: Props) => {
-  //   const animationProgress = useRef(new Animated.Value(18 / 60));
-
-  //   useEffect(() => {
-  //     Animated.loop(
-  //       Animated.timing(animationProgress.current, {
-  //         toValue: 38 / 60,
-  //         duration: 1000,
-  //         easing: Easing.linear,
-  //         useNativeDriver: false,
-  //       }),
-  //     ).start();
-  //   }, []);
+const PlayerListItem = ({nickname, card}: Props) => {
+  const isRandom = useMemo(() => card === 'Secret', [card]);
 
   return (
     <ListItem>
@@ -31,10 +20,20 @@ const PlayerListItem = ({nickname}: Props) => {
       <LottieView
         source={animation}
         style={{width: 50, height: 50}}
-        speed={2}
-        autoPlay
-        loop
-        // progress={animationProgress.current}
+        speed={!isRandom ? 0 : 2}
+        autoPlay={isRandom}
+        loop={isRandom}
+        progress={
+          !isRandom
+            ? card === 'Rock'
+              ? 13 / 60
+              : card === 'Scissor'
+              ? 33 / 60
+              : card === 'Paper'
+              ? 52 / 60
+              : undefined
+            : undefined
+        }
       />
     </ListItem>
   );
