@@ -110,13 +110,11 @@ export const revealGame =
         }
         if (groupMap.size >= 3) {
           hasResult = false;
-          dispatch(unshiftToast('未有結果，等待主辦人重新'));
           break;
         }
       }
       if (groupMap.size === 1) {
         hasResult = false;
-        dispatch(unshiftToast('平手，等待主辦人重新'));
       }
 
       let winners: string[] = [];
