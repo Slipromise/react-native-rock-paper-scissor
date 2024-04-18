@@ -10,6 +10,7 @@ import {
 } from 'redux-persist';
 import user from './userSlice';
 import game from './gameSlice';
+import system from './systemSlice';
 
 const middlewares: Middleware[] = [];
 
@@ -22,6 +23,7 @@ export const store = configureStore({
   reducer: {
     user,
     game,
+    system,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

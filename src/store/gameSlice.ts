@@ -26,7 +26,7 @@ const gameSlice = createSlice({
       const games = action.payload;
       state.games = games;
     },
-    setCurrentGame: (state, action: PayloadAction<Game>) => {
+    setCurrentGame: (state, action: PayloadAction<Game | undefined>) => {
       const currentGame = action.payload;
       state.currentGame = currentGame;
     },

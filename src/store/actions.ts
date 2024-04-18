@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {setInfo} from './userSlice';
 import {setWaitToEnterGameId} from './gameSlice';
+import {unshiftToast} from './systemSlice';
 
 export const signInAnonymously =
   (): ThunkAction<void, RootState, unknown, UnknownAction> =>
@@ -109,11 +110,13 @@ export const revealGame =
         }
         if (groupMap.size >= 3) {
           hasResult = false;
+          dispatch(unshiftToast('未有結果，等待主辦人重新'));
           break;
         }
       }
       if (groupMap.size === 1) {
         hasResult = false;
+        dispatch(unshiftToast('平手，等待主辦人重新'));
       }
 
       let winners: string[] = [];

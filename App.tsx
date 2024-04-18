@@ -12,7 +12,10 @@ import Pages from './src/pages';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from '@rneui/themed';
 import theme from './src/styles/theme';
+import Toasts from './src/containers/Toasts';
+import withAuth from './src/containers/withAuth';
 
+const WarpPages = withAuth(Pages);
 function App(): React.JSX.Element {
   // return <Pages></Pages>;
 
@@ -20,9 +23,9 @@ function App(): React.JSX.Element {
     <SafeAreaProvider>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <Pages />
+          <WarpPages />
+          <Toasts />
         </ThemeProvider>
-        {/* TODO: auth gate */}
       </Provider>
     </SafeAreaProvider>
   );

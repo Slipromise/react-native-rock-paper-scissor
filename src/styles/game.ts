@@ -3,20 +3,18 @@ import {StyleSheet} from 'react-native';
 
 const useStyles = makeStyles(() => ({
   container: StyleSheet.absoluteFillObject,
-  emptyContainer: {
+  winningAnimation: {width: '100%', height: '100%', position: 'absolute'},
+  ListEmptyContainer: {
     width: '100%',
     height: 500,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  emptyAnimation: {
-    width: 250,
-    aspectRatio: 1,
-  },
+  emptyBgAnimation: {width: 200, height: 200},
   emptyHintText: {
     fontSize: 20,
-    color: 'black',
-    fontWeight: '700',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 }));
 

@@ -1,8 +1,8 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import React, {useCallback, useEffect, useState} from 'react';
 import GameListItem from '../components/GameListItem';
 import useGameListQuery from '../containers/useGameListQuery';
-import {Button} from '@rneui/themed';
+import {Button, Text} from '@rneui/themed';
 import {useDispatch, useSelector} from 'react-redux';
 import {createGame} from '../store/actions';
 import {AppDispatch} from '../store';
@@ -11,16 +11,22 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackNames, RootStackParamList} from '../definitions/Navigation';
 import {waitToEnterGameIdSelector} from '../store/selectors';
 import {setWaitToEnterGameId} from '../store/gameSlice';
+import useStyles from '../styles/gamelist';
+import LottieView from 'lottie-react-native';
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
   RootStackNames.GAME_LIST
 >;
 
+const emptyBgAnimation = require('../images/Animation - 1713427598524.json');
+
 const GameList = ({navigation}: Props) => {
   const data = useGameListQuery();
 
   const dispatch = useDispatch<AppDispatch>();
+
+  const styles = useStyles();
 
   const waitToEnterGameId = useSelector(waitToEnterGameIdSelector);
 
@@ -41,7 +47,7 @@ const GameList = ({navigation}: Props) => {
   }, [dispatch, navigation, waitToEnterGameId]);
 
   return (
-    <View style={StyleSheet.absoluteFill}>
+    <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={({item}) => (
@@ -56,8 +62,17 @@ const GameList = ({navigation}: Props) => {
           />
         )}
         keyExtractor={({id}) => id}
-        // TODO: 添加空的
-        // ListEmptyComponent={}
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <LottieView
+              source={emptyBgAnimation}
+              style={styles.emptyAnimation}
+              autoPlay
+              loop
+            />
+            <Text style={styles.emptyHintText}>尚未有玩家創建遊戲</Text>
+          </View>
+        }
       />
       <Button
         title={'創建新遊戲'}

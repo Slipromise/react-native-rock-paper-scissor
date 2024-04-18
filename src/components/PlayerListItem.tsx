@@ -1,25 +1,26 @@
 import React, {useMemo} from 'react';
 import {ListItem} from '@rneui/themed';
 import LottieView from 'lottie-react-native';
-// import {Animated, Easing} from 'react-native';
+import useStyles from '../styles/playerListItem';
+
 type Props = {
   nickname: string;
   card: 'Secret' | 'Rock' | 'Paper' | 'Scissor';
+  isWinner?: boolean;
 };
 
 const animation = require('../images/Animation - 1713198851570.json');
 
-// const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
-
-const PlayerListItem = ({nickname, card}: Props) => {
+const PlayerListItem = ({nickname, card, isWinner}: Props) => {
   const isRandom = useMemo(() => card === 'Secret', [card]);
+  const styles = useStyles({isWinner});
 
   return (
-    <ListItem>
+    <ListItem containerStyle={styles.container}>
       <ListItem.Title>{nickname}</ListItem.Title>
       <LottieView
         source={animation}
-        style={{width: 50, height: 50}}
+        style={styles.animation}
         speed={!isRandom ? 0 : 2}
         autoPlay={isRandom}
         loop={isRandom}

@@ -7,7 +7,6 @@ import GameList from './GameList';
 import Game from './Game';
 import {useSelector} from 'react-redux';
 import {userDisplayNameSelector} from '../store/selectors';
-import useAuth from '../containers/useAuth';
 
 type Props = {};
 
@@ -15,8 +14,6 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Index = ({}: Props) => {
   const userDisplayName = useSelector(userDisplayNameSelector);
-
-  useAuth();
 
   return (
     <NavigationContainer>

@@ -13,14 +13,22 @@ const currentGameSelector = (state: RootState) => state.game.currentGame;
 export const gameListSelector = createSelector(
   [gamesSelector, userUidSelector],
   (games, uid) =>
-    games?.map(game => ({
-      ...game,
-      players: game.players?.map(item => ({
-        item,
-        card: uid === item.uid ? item.card : 'Secret',
-        displayName: uid === item.uid ? '你' : item.displayName,
-      })),
-    })) || [],
+    [...(games || [])]
+      ?.sort((a, b) =>
+        a.status === 'Done' && b.status === 'Done'
+          ? 0
+          : a.status === 'Done'
+          ? -1
+          : 1,
+      )
+      .map(game => ({
+        ...game,
+        players: game.players?.map(item => ({
+          item,
+          card: uid === item.uid ? item.card : 'Secret',
+          displayName: uid === item.uid ? '你' : item.displayName,
+        })),
+      })) || [],
 );
 
 export const gameSelector = createSelector(
@@ -37,3 +45,5 @@ export const gameSelector = createSelector(
 
 export const waitToEnterGameIdSelector = (state: RootState) =>
   state.game.waitToEnterGameId;
+
+export const toastsSelector = (state: RootState) => state.system.toasts;

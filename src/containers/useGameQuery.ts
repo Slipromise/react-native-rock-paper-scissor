@@ -10,7 +10,6 @@ const useGameQuery = (id: string) => {
 
   const result = useSelector(gameSelector);
 
-  //   TODO: 專注取消訂閱
   useEffect(() => {
     const subscriber = firestore()
       .collection('games')
@@ -24,6 +23,7 @@ const useGameQuery = (id: string) => {
       });
     return () => {
       subscriber();
+      dispatch(setCurrentGame(undefined));
     };
   }, [dispatch, id]);
 

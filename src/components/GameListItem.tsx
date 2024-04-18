@@ -1,6 +1,6 @@
 import React from 'react';
 import {ListItem} from '@rneui/themed';
-import useStyles from '../styles/gamelist';
+import useStyles from '../styles/gamelistItem';
 
 type Props = {
   title: string;
@@ -10,7 +10,6 @@ type Props = {
   isDone?: boolean;
 };
 
-// TODO: icon 處理
 const GameListItem = ({title, playerCount, winner, onPress, isDone}: Props) => {
   const styles = useStyles({isDone: isDone});
 
